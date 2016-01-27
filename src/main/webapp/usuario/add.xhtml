@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <title>CRUD JSF</title>
+    </h:head>
+    <h:body>
+        <h:form>
+            <h:panelGrid columns="2">
+
+                <h:outputLabel value="NOMBRE" />
+                <h:inputText value="#{usuarioBean.usuario.nombre}"/>
+                <h:outputLabel value="APEPAT"/>
+                <h:inputText value="#{usuarioBean.usuario.apepat}"/>
+                <h:outputLabel value="APEMAT"/>
+                <h:inputText value="#{usuarioBean.usuario.apemat}"/>
+                <h:outputLabel value="ESTADO"/>
+                <h:inputText value="#{usuarioBean.usuario.estado}" />
+                <h:commandButton value="Guardar" action="#{usuarioBean.save(usuarioBean.usuario)}"/>
+
+            </h:panelGrid>
+        </h:form>
+    </h:body>
+</html>
+
