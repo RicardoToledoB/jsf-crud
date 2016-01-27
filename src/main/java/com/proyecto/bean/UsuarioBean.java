@@ -7,6 +7,7 @@ import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Logger;
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -15,9 +16,9 @@ import javax.inject.Inject;
  * @author ricardotoledo
  */
 @Named(value = "usuarioBean")
-@RequestScoped
+@SessionScoped
 public class UsuarioBean implements Serializable {
-
+    
     @Inject
     private UsuarioServiceImpl uService;
     Usuario usuario = new Usuario();
@@ -70,6 +71,7 @@ public class UsuarioBean implements Serializable {
 
     public void edit(Usuario u) {
         uService.edit(u);
+        usuarioEdit=new Usuario();
     }
 
     public void save(Usuario u) {

@@ -16,6 +16,7 @@ import javax.persistence.Query;
  * @author ricardotoledo
  */
 public class UsuarioDAOImpl implements UsuarioDAO {
+    
     @PersistenceContext
     private EntityManager em;
     @Override
@@ -30,7 +31,7 @@ public class UsuarioDAOImpl implements UsuarioDAO {
 
     @Override
     public void delete(Usuario u) {
-        em.remove(u);
+        em.remove(em.merge(u));
     }
 
     @Override

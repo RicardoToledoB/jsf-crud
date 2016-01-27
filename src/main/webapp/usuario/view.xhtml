@@ -6,7 +6,21 @@
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+       <h:link value="Volver" outcome="list" />
+        <h:form>
+            <h:panelGrid columns="2" border="1">
+
+                <h:outputLabel value="NOMBRE" />
+                <h:outputLabel  value="#{usuarioBean.usuarioView.nombre}"/>
+                <h:outputLabel value="APEPAT"/>
+                <h:outputLabel  value="#{usuarioBean.usuarioView.apepat}"/>
+                <h:outputLabel value="APEMAT"/>
+                <h:outputLabel  value="#{usuarioBean.usuarioView.apemat}"/>
+                <h:outputLabel value="ESTADO"/>
+                <h:outputLabel  value="#{usuarioBean.usuarioView.estado}" />
+                
+            </h:panelGrid>
+        </h:form>
     </h:body>
 </html>
 

@@ -1,12 +1,41 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
         <title>Facelet Title</title>
     </h:head>
     <h:body>
-        Hello from Facelets
+       <h:link value="Nuevo" outcome="add" />
+        <h:form>
+            <h:dataTable value="#{usuarioBean.lista}" var="usuarios" border="1">
+                <h:column>
+                    <f:facet name="header">Nombre</f:facet>
+                    #{usuarios.nombre}
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Apepat</f:facet>
+                    #{usuarios.apepat}
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Apemat</f:facet>
+                    #{usuarios.apemat}
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Estado</f:facet>
+                    #{usuarios.estado}
+                </h:column>
+                 <h:column>
+                    <f:facet name="header">Acciones</f:facet>
+                    <h:commandButton value="Edit" action="#{usuarioBean.setUsuarioEdit(usuarios)}"/>
+                    <h:commandButton value="Del" action="#{usuarioBean.delete(usuarios)}"/>
+                    <h:commandButton value="View" action="#{usuarioBean.setUsuarioView(usuarios)}"/>
+                    
+                </h:column>
+                
+            </h:dataTable>
+        </h:form>
     </h:body>
 </html>
 
