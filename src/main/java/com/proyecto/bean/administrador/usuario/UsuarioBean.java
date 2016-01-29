@@ -1,6 +1,9 @@
-package com.proyecto.bean;
+package com.proyecto.bean.administrador.usuario;
 
+import com.proyecto.bean.administrador.rol.RolBean;
+import com.proyecto.model.Rol;
 import com.proyecto.model.Usuario;
+import com.proyecto.service.RolServiceImpl;
 import com.proyecto.service.UsuarioService;
 import com.proyecto.service.UsuarioServiceImpl;
 import javax.inject.Named;
@@ -8,6 +11,8 @@ import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
 import java.util.List;
 import java.util.logging.Logger;
+import javax.annotation.PostConstruct;
+
 import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 
@@ -25,7 +30,16 @@ public class UsuarioBean implements Serializable {
     Usuario usuarioEdit = new Usuario();
     Usuario usuarioView = new Usuario();
     List<Usuario> lista;
-
+    @Inject 
+    private RolServiceImpl rService;
+    private List<Rol> roles;
+    private List<Rol> rolesSelecionados;
+    @PostConstruct
+    public void Usuario(){
+       roles=rService.list();
+       
+    }
+    
     public UsuarioBean() {
 
     }
@@ -75,7 +89,28 @@ public class UsuarioBean implements Serializable {
     }
 
     public void save(Usuario u) {
+        u.setRoles(rolesSelecionados);
         uService.save(u);
         usuario = new Usuario();
     }
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
+
+   
+
+
+    public List<Rol> getRolesSelecionados() {
+        return rolesSelecionados;
+    }
+
+    public void setRolesSelecionados(List<Rol> rolesSelecionados) {
+        this.rolesSelecionados = rolesSelecionados;
+    }
+    
 }

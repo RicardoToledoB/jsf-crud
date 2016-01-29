@@ -1,36 +1,67 @@
 package com.proyecto.model;
+
+import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+
 @Entity
-@Table(name="Usuarios")
+@Table(name = "Usuarios")
 public class Usuario {
-    
+
     @Id
-    @GeneratedValue(strategy=GenerationType.IDENTITY)
-    @Column(name="usuario_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "usuario_id")
     private int id;
-    @Column(name="nombre")
+    @Column(name = "nombre")
     private String nombre;
-    @Column(name="apepat")
+    @Column(name = "apepat")
     private String apepat;
-    @Column(name="apemat")
+    @Column(name = "apemat")
     private String apemat;
-    @Column(name="estado")
+    @Column(name = "username")
+    private String username;
+    @Column(name = "password")
+    private String password;
+    @Column(name = "estado")
     private String estado;
 
+    @ManyToMany
+    @JoinTable(name = "Usuarios_Roles",
+            joinColumns = {
+                @JoinColumn(name = "usuario_id")},
+            inverseJoinColumns = {
+                @JoinColumn(name = "rol_id")}
+    )
+    List<Rol> roles;
+
+    public List<Rol> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<Rol> roles) {
+        this.roles = roles;
+    }
+    
+    
+    
     public Usuario() {
     }
 
-    public Usuario(int id, String nombre, String apepat, String apemat, String estado) {
+    public Usuario(int id, String nombre, String apepat, String apemat, String estado, String username, String password) {
         this.id = id;
         this.nombre = nombre;
         this.apepat = apepat;
         this.apemat = apemat;
         this.estado = estado;
+        this.username = username;
+        this.password = password;
     }
 
     public int getId() {
@@ -65,6 +96,22 @@ public class Usuario {
         this.apemat = apemat;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getEstado() {
         return estado;
     }
@@ -72,5 +119,5 @@ public class Usuario {
     public void setEstado(String estado) {
         this.estado = estado;
     }
-    
+
 }
