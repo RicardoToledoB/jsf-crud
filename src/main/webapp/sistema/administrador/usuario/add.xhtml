@@ -26,7 +26,7 @@
                 <h:outputLabel value="PASSWORD"/>
                 <h:inputSecret value="#{usuarioBean.usuario.password}"/>
                 <h:outputLabel value="PRIVILEGIOS*"/>
-                <h:selectManyMenu  value="#{usuarioBean.rolesSelecionados}">
+                <h:selectManyMenu  value="#{usuarioBean.rolesSelecionados}" >
                     <f:selectItems value="#{usuarioBean.roles}" var="r"
                                    itemLabel="#{r.tipo}" itemValue="#{r.id}" />
                 </h:selectManyMenu>
@@ -34,7 +34,7 @@
 
                 <h:outputLabel value="ESTADO"/>
                 <h:inputText value="#{usuarioBean.usuario.estado}" />
-                <h:commandButton value="Guardar" action="#{usuarioBean.save(usuarioBean.usuario)}"/>
+                <h:commandButton value="Guardar" action="#{usuarioBean.save()}"/>
 
             </h:panelGrid>
         </h:form>
