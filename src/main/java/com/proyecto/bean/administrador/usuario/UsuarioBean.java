@@ -37,6 +37,7 @@ public class UsuarioBean implements Serializable {
     @PostConstruct
     public void Usuario(){
        roles=rService.list();
+      
        
     }
     
@@ -89,6 +90,7 @@ public class UsuarioBean implements Serializable {
     }
 
     public void save(Usuario u) {
+       
         u.setRoles(rolesSelecionados);
         uService.save(u);
         usuario = new Usuario();

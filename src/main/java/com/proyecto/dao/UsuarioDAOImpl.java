@@ -5,8 +5,10 @@
  */
 package com.proyecto.dao;
 
+import com.proyecto.model.Rol;
 import com.proyecto.model.Usuario;
 import java.util.List;
+import javax.inject.Inject;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
@@ -19,8 +21,10 @@ public class UsuarioDAOImpl implements UsuarioDAO {
     
     @PersistenceContext
     private EntityManager em;
+    
     @Override
     public void save(Usuario u) {
+        
         em.persist(u);
     }
 
