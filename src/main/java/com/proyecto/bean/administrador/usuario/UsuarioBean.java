@@ -9,8 +9,12 @@ import com.proyecto.service.UsuarioServiceImpl;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
 import java.io.Serializable;
+import static java.lang.Math.E;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 
@@ -34,12 +38,13 @@ public class UsuarioBean implements Serializable {
     @Inject
     private RolServiceImpl rService;
     private List<Rol> roles;
-    private List<Rol> rolesSelecionados;
+
+    private List<String> rolesSeleccionados;
 
     @PostConstruct
     public void init() {
         roles = rService.list();
-        rolesSelecionados = new ArrayList<>();
+
         usuario = new Usuario();
         usuarioEdit = new Usuario();
         usuarioView = new Usuario();
@@ -94,22 +99,23 @@ public class UsuarioBean implements Serializable {
     }
 
     public void save() {
-        System.out.println("NOM" + usuario.getId());
-        System.out.println("NOM" + usuario.getNombre());
-        System.out.println("NOM" + usuario.getApepat());
-        System.out.println("NOM" + usuario.getApemat());
-        System.out.println("NOM" + usuario.getEstado());
-        System.out.println("NOM" + usuario.getUsername());
-        System.out.println("NOM" + usuario.getPassword());
-
-        if (rolesSelecionados != null) {
-            System.out.println("LLLLLLALALALALA");
-        } else {
-            System.out.println("MMMMMMM");
+        System.out.println(rolesSeleccionados);
+        
+        List<Rol> rolSelected=new ArrayList<Rol>();
+        for(String str:rolesSeleccionados){
+           int rolid=Integer.parseInt(str);
+           System.out.println("ID"+rolid);
+           Rol r=rService.findById(rolid);
+           System.out.println("ID:"+r.getId());
+           System.out.println("ID:"+r.getTipo());
+          // usuario.getRoles().add(r);
+           rolSelected.add(r);
+           
+            
         }
-        usuario.setRoles(rolesSelecionados);
+        usuario.setRoles(rolSelected);
         uService.save(usuario);
-        usuario = new Usuario();
+        
     }
 
     public List<Rol> getRoles() {
@@ -120,12 +126,12 @@ public class UsuarioBean implements Serializable {
         this.roles = roles;
     }
 
-    public List<Rol> getRolesSelecionados() {
-        return rolesSelecionados;
+    public List<String> getRolesSeleccionados() {
+        return rolesSeleccionados;
     }
 
-    public void setRolesSelecionados(List<Rol> rolesSelecionados) {
-        this.rolesSelecionados = rolesSelecionados;
+    public void setRolesSeleccionados(List<String> rolesSeleccionados) {
+        this.rolesSeleccionados = rolesSeleccionados;
     }
 
 }
